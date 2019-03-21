@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{title}}</h1>
+
+<table id="cart">
+     
+<thead>
+<th class="third">Product</th>
+<th class="second">Quantity</th><th class="fourth">Price</th>
+<th class="fourth">Total</th>
+<th class="fifth">&nbsp;</th>
+</thead>
+    <tbody>
+    {% for key, value in display_cart.items() %}
+    <tr class="product">
+        <td>{{ value["title"] }}</td>
+        <td>{{ value["quantity"] }}</td>
+        <td>£{{ value["price"] }}</td>
+        <td>£{{ (value["quantity"]*value["price"]) }}</td>
+        
+        <td><span class="remove">
+        <form action="{{ url_for('delete_book', book_id=key|int) }}" method="POST">
+        <input class="btncart2" type="submit" value="Delete" >
+        </form>
+        </span>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+<div class="totalprice">
+            Total:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="thick">£{{ total }}</span>
+</div>
+
+<div class="bekas"> 
+    <form action="{{ url_for('checkout') }}" method="POST">
+<input class="cobtncart" type="submit" value="Checkout">
+    </form>
+</div>
+{% endblock content %}

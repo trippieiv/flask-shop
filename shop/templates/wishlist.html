@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{title}}</h1>
+
+<table id="cart">
+     
+<thead>
+<th class="third">Product</th>
+<th class="fourth">Price</th>
+<th class="fifth">&nbsp;</th>
+<th class="fifth">&nbsp;</th>
+</thead>
+    <tbody>
+    {% for key, value in display_wishlist.items() %}
+    <tr class="product">
+        <td>{{ value["title"] }}</td>
+        <td>£{{ value["price"] }}</td>
+        
+        <td><span class="remove">
+        <form action="{{ url_for('add_to_cart', book_id=key|int) }}">
+        <input class="btncart1" type="submit" value="Add to Cart" >
+        </form>
+        </span>
+        </td>
+        
+        <td><span class="remove">
+        <form action="{{ url_for('delete_wishlist', book_id=key|int) }}" method="POST">
+        <input class="btncart2" type="submit" value="Delete from wishlist" >
+        </form>
+        </span>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

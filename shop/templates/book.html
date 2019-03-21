@@ -1,0 +1,25 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="left-column">
+        <img src = "{{ url_for('static', filename='img/' + book.image_file) }}" class="coverproduct">
+    </div>
+    
+    <div class="right-column">
+       
+        <div class="description">
+            <h1>{{ book.title }}</h1>
+            <p>{{ book.description }}</p>
+            <p>{{ book.author.first_name }}&nbsp;{{ book.author.last_name}}</p>
+        </div>
+        
+        <div class="price">
+            <span>£{{ book.price }}</span>
+            <a href="/add_to_cart/{{ book.id }}" class="cart-btn">Add to Cart</a>
+            <a href="/add_to_wishlist/{{ book.id }}" class="wishlist-btn">Add to Wishlist</a>
+        </div>
+    </div>
+    
+    </div>
+{% endblock content %}

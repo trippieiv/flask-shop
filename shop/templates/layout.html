@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel=stylesheet ztype=text/css href="{{ url_for('static', filename='style.css') }}">
+  <title>{{ title }}</title>
+</head>
+
+<body>
+ <div class="wrapper2">
+     
+ <div class="header">
+     <h1>the bookstore</h1>
+ </div>
+ 
+ 
+  <div class="topnav">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About Us</a>
+    <a href="{{ url_for('wishlist_display') }}">Wishlist</a>
+    <div id="topleft">
+    {% if current_user.is_authenticated %}
+        <a href="">Hello, {{current_user.username}}</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+    {% else %}
+        <a href="">
+            Hello, Guest
+        </a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+        <a href="{{ url_for('cart_display') }}">Cart ({{total_quantity}} items) </a>
+        
+      </div>
+  </div>
+     
+      
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+  </div>
+
+  <div class="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+
+</body>
+</html>

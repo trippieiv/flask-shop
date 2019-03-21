@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="logo">
+   <h1>login</h1> 
+</div>
+<div class="containerlog">
+    <form method="POST" action="" class="login">
+      {{ form.csrf_token }}
+    <div class="label">
+    {{ form.email.label }}{{ form.email }}
+    </div>
+    <div class="label">
+    {{ form.password.label }} {{ form.password}}
+        </div>
+    <div id="button">
+        {{ form.submit() }}
+    </div>
+    </form>
+</div>
+{% endblock content %}
